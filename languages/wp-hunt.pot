@@ -1,0 +1,37 @@
+# Copyright (C) 2019 wizocder
+# This file is distributed under the GPLv2.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Hunt 0.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-hunt\n"
+"POT-Creation-Date: 2019-05-04 08:13:22+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: grunt-wp-i18n 1.0.3\n"
+
+#: wp-hunt.php:270
+msgid ""
+"WP Hunt is missing requirements and has been <a "
+"href=\"%s\">deactivated</a>. Please make sure all requirements are "
+"available."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "WP Hunt"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "imakeplugins.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Extending PRoduct Hunt API to WordPRess"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "wizocder"
+msgstr ""

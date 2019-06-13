@@ -1,0 +1,18 @@
+{
+  "name": "wp-hunt",
+  "description": "Extending PRoduct Hunt API to WordPRess",
+  "license": "GPLv2",
+  "authors": [
+    "wizocder"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}

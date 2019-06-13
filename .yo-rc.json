@@ -1,0 +1,20 @@
+{
+  "generator-plugin-wp": {
+    "name": "WP Hunt",
+    "homepage": "imakeplugins.com",
+    "description": "Extending PRoduct Hunt API to WordPRess",
+    "version": "0.0.0",
+    "author": "wizocder",
+    "authoremail": "ongsweesan@gmail.com",
+    "authorurl": "imakeplugins.com",
+    "license": "GPLv2",
+    "slug": "wp-hunt",
+    "classname": "WP_Hunt",
+    "mainclassname": "WP_Hunt",
+    "classprefix": "WPH_",
+    "prefix": "wp_hunt",
+    "year": 2019,
+    "currentVersionWP": "4.8.1",
+    "plugingenversion": "0.20.2"
+  }
+}
