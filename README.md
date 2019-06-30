@@ -24,7 +24,7 @@ Extending Product Hunt API to WordPRess
 
 
 ## Screenshots ##
-
+1. Posts shortcode.
 
 ## Changelog ##
 
