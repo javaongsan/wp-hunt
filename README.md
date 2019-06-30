@@ -10,7 +10,7 @@
 
 ## Description ##
 
-Extending PRoduct Hunt API to WordPRess
+Extending Product Hunt API to WordPRess
 
 ## Installation ##
 
@@ -18,6 +18,7 @@ Extending PRoduct Hunt API to WordPRess
 
 1. Upload the entire `/wp-hunt` directory to the `/wp-content/plugins/` directory.
 2. Activate WP Hunt through the 'Plugins' menu in WordPress.
+3. Use shotcode [wp-hunt-posts num=10] to display products posts.
 
 ## Frequently Asked Questions ##
 
@@ -30,7 +31,11 @@ Extending PRoduct Hunt API to WordPRess
 ### 0.0.0 ###
 * First release
 
+### 0.0.1 - 29/6/2019 ###
+* fixed css.
+
 ## Upgrade Notice ##
 
 ### 0.0.0 ###
 First Release
+

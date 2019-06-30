@@ -1,5 +1,5 @@
 /**
- * WP Hunt - v0.0.0 - 2019-06-10
+ * WP Hunt - v0.0.0 - 2019-06-30
  * imakeplugins.com
  *
  * Copyright (c) 2019;
@@ -55,11 +55,10 @@ window.WPHunt = window.WPHunt || {};
 			}
 
 			$.post(wp_hunt_vars.ajaxurl, postData, function (response) {
-				var jsonobj = $.parseJSON(response);
-				if ('error' == jsonobj.result) {
+				if ('fail' == response) {
 					alert(wp_hunt_vars.error_message);
 				} else {
-					$('#wp-hunt-api-token').text(jsonobj.message);
+					$('#wp-hunt-api-token').text(response);
 					$('#wp-hunt-api-token-div').show();
 				}
 			});

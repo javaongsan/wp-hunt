@@ -92,3 +92,27 @@
     width: auto; /* this overrides the media queries */
   }
 }
+
+.wp-hunt img {
+    height: auto;
+    max-width: 100%;
+    position: relative;
+    width: 80px;
+    border-radius: 50px;
+}
+
+.wp-hunt ul {
+  list-style-type: none;
+}
+
+.wp-hunt li {
+    border-radius: 25px;
+    box-shadow: antiquewhite;
+    background-color: rgba(88, 99, 66, 0.12);
+    padding: 15px;
+    margin: 15px;
+}
+
+.wp-hunt td {
+    border: none;
+}
