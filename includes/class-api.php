@@ -109,7 +109,51 @@ class WPH_Api {
 	 * @return collections.
 	 */
 	public function collections( $num = 1 ) {
-		$query = 'query { collections(first: ' . $num . ') {edges { node { id, name } } } }';
+		$query = '{
+		  collections( last: ' . $num . ', order: NEWEST){
+		    edges{
+		      node{
+		        name
+		        tagline
+		        createdAt
+		       url
+		        user {
+		          name
+		          username
+		          twitterUsername
+		          isMaker
+		          id
+		        }
+		        featuredAt
+		      }
+		    }
+		    
+		  }
+		}
+		';
+		return $this->graphql( $query );
+	}
+
+	/**
+	 * Get topics
+	 *
+	 * @since  0.0.0
+	 *
+	 * @return topics.
+	 */
+	public function topics( $num = 1 ) {
+		$query = '{
+		  topics( last: ' . $num . ', order: NEWEST){
+		    edges {
+		      node {
+		        name
+		        createdAt
+		        url
+		        image
+		      }
+		    }
+		}
+		';
 		return $this->graphql( $query );
 	}
 
@@ -121,7 +165,29 @@ class WPH_Api {
 	 * @return goals.
 	 */
 	public function goals( $num = 1 ) {
-		$query = 'query { goals(first: ' . $num . ') {edges { node { id, title } } } }';
+		$query = '{
+		  	goals(last: ' . $num . ', order: NEWEST) {
+			    edges {
+			      node {
+			        id
+			        current
+			        project {
+			          id
+			          name
+			        }
+			        id
+			        user {
+			          id
+			          name
+			        }
+			        title
+			        createdAt
+			        completedAt
+			      }
+			    }
+			  }
+			}
+		';
 		return $this->graphql( $query );
 	}
 
@@ -133,7 +199,19 @@ class WPH_Api {
 	 * @return makergroups.
 	 */
 	public function makergroups( $num = 1 ) {
-		$query = 'query { makerGroups(first: ' . $num . ') {edges { node { id, name } } } }';
+		$query = '{
+		  makerGroups(last: ' . $num . ', order: NEWEST) {
+		    edges {
+		      node {
+		        id
+		       name
+		        membersCount
+		        tagline
+		        url
+		      }
+		    }
+		  }
+		}';
 		return $this->graphql( $query );
 	}
 
@@ -146,7 +224,7 @@ class WPH_Api {
 	 */
 	public function posts( $num = 1 ) {
 		$query = 'query { 
-			posts(first: ' . $num . ') { 
+			posts(first: ' . $num . ', order: NEWEST) {
 				edges {
 					node {
 						name
@@ -172,18 +250,6 @@ class WPH_Api {
 				} 
 			} 
 		}';
-		return $this->graphql( $query );
-	}
-
-	/**
-	 * Get topics
-	 *
-	 * @since  0.0.0
-	 *
-	 * @return topics.
-	 */
-	public function topics( $num = 1 ) {
-		$query = 'query { topics(first: ' . $num . ') {edges { node { id, name } } } }';
 		return $this->graphql( $query );
 	}
 

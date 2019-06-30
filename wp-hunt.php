@@ -3,7 +3,7 @@
  * Plugin Name: WP Hunt
  * Plugin URI:  imakeplugins.com
  * Description: Extending PRoduct Hunt API to WordPRess
- * Version:     0.0.0
+ * Version:     0.0.1
  * Author:      wizocder
  * Author URI:  imakeplugins.com
  * Donate link: imakeplugins.com
@@ -14,7 +14,7 @@
  * @link    imakeplugins.com
  *
  * @package WP_Hunt
- * @version 0.0.0
+ * @version 0.0.1
  *
  * Built using generator-plugin-wp (https://github.com/WebDevStudios/generator-plugin-wp)
  */
@@ -72,7 +72,7 @@ final class WP_Hunt {
 	 * @var    string
 	 * @since  0.0.0
 	 */
-	const VERSION = '0.0.0';
+	const VERSION = '0.0.1';
 
 	/**
 	 * URL of plugin directory.
@@ -164,6 +164,14 @@ final class WP_Hunt {
 	protected $shortcode;
 
 	/**
+	 * Instance of WPH_Template
+	 *
+	 * @since0.0.1
+	 * @var WPH_Template
+	 */
+	protected $template;
+
+	/**
 	 * Creates or returns an instance of this class.
 	 *
 	 * @since   0.0.0
@@ -202,6 +210,7 @@ final class WP_Hunt {
 		$this->admin = new WPH_Admin( $this );
 		$this->ajax = new WPH_Ajax( $this );
 		$this->shortcode = new WPH_Shortcode( $this );
+		$this->template = new WPH_Template( $this );
 	} // END OF PLUGIN CLASSES FUNCTION
 
 	/**
@@ -362,6 +371,7 @@ final class WP_Hunt {
 			case 'name':
 			case 'ajax':
 			case 'shortcode':
+			case 'template':
 				return $this->$field;
 			default:
 				throw new Exception( 'Invalid ' . __CLASS__ . ' property: ' . $field );

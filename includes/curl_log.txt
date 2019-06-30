@@ -1,3 +1,4 @@
+* Hostname in DNS cache was stale, zapped
 *   Trying 104.18.231.83...
 * Connected to api.producthunt.com (104.18.231.83) port 443 (#0)
 * ALPN, offering http/1.1
@@ -19,29 +20,28 @@ Host: api.producthunt.com
 Accept: */*
 Content-Type:application/json
 Authorization: Bearer 68efa19e29b71c64fc0b986c800c9f5f7bef29c1ffa150fe1b9c7256a1d18d4d
-Content-Length: 372
+Content-Length: 359
 
-* upload completely sent off: 372 out of 372 bytes
-< HTTP/1.1 200 OK
-< Date: Sun, 30 Jun 2019 05:48:57 GMT
+* upload completely sent off: 359 out of 359 bytes
+< HTTP/1.1 429 Too Many Requests
+< Date: Sun, 30 Jun 2019 14:12:41 GMT
 < Content-Type: application/json; charset=utf-8
 < Transfer-Encoding: chunked
 < Connection: keep-alive
-< Set-Cookie: __cfduid=d0ebc354397aa00049bd28544983de8201561873735; expires=Mon, 29-Jun-20 05:48:55 GMT; path=/; domain=.producthunt.com; HttpOnly
+< Set-Cookie: __cfduid=d2c9257833e9bd3a159b2b26f971a22921561903960; expires=Mon, 29-Jun-20 14:12:40 GMT; path=/; domain=.producthunt.com; HttpOnly
 < X-Frame-Options: SAMEORIGIN
 < X-XSS-Protection: 1; mode=block
 < X-Content-Type-Options: nosniff
 < X-Rate-Limit-Limit: 25
-< X-Rate-Limit-Remaining: 25
-< X-Rate-Limit-Reset: 900
-< ETag: W/"6581bd58429e7248f142d0419d4f796e"
-< Cache-Control: max-age=0, private, must-revalidate
-< X-Request-Id: e34b118b-7542-456a-88ab-57a4175b99e1
-< X-Runtime: 0.421948
+< X-Rate-Limit-Remaining: -357
+< X-Rate-Limit-Reset: 509
+< Cache-Control: no-cache
+< X-Request-Id: dcd36cf2-2002-4a17-8b44-53bc57354e52
+< X-Runtime: 0.008729
 < Vary: Origin
 < Strict-Transport-Security: max-age=2592000; includeSubDomains; preload
 < Expect-CT: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
 < Server: cloudflare
-< CF-RAY: 4eedda9f393ecc20-SIN
+< CF-RAY: 4ef0bc8b0ad8d9c4-SIN
 < 
 * Connection #0 to host api.producthunt.com left intact

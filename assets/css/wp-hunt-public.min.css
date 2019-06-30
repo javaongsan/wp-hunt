@@ -1,5 +1,5 @@
 /**
- * WP Hunt - v0.0.0 - 2019-06-30
+ * WP Hunt - v0.0.1 - 2019-06-30
  * imakeplugins.com
  *
  * Copyright (c) 2019;

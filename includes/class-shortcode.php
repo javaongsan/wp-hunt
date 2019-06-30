@@ -39,11 +39,23 @@ class WPH_Shortcode {
 	 * @since  0.0.0
 	 */
 	public function hooks() {
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_styles' ) );
 		add_shortcode( 'wp-hunt-posts', array( $this, 'posts' ) );
+		add_shortcode( 'wp-hunt-goals', array( $this, 'goals' ) );
 	}
 
-	public function posts( $atts ) {
-		$a   = shortcode_atts(
+	/**
+	 * Register the stylesheets for the public area.
+	 *
+	 * @since    0.0.0
+	 */
+	public function enqueue_public_styles() {
+		wp_enqueue_style( $this->plugin->__get( 'name' ), $this->plugin->__get( 'url' ) . 'assets/css/wp-hunt-public.min.css', array(), $this->plugin->__get( 'version' ), 'all' );
+	}
+
+
+	public function update_api( $atts, $code ) {
+		$a = shortcode_atts(
 			array(
 				'num' => 1,
 			),
@@ -52,19 +64,39 @@ class WPH_Shortcode {
 
 		$api = '';
 		//storing api casue of api rate_limit, updates every 24hr
-		if ( empty( get_option( 'wp_hunt_posts' ) ) || ( ! empty( get_option( 'wp_hunt_posts_createdat' ) ) && date( 'Y-m-d H:i:s' ) > date( 'Y-m-d H:i:s', strtotime( '+24 hours', strtotime( get_option( 'wp_hunt_posts_createdat' ) ) ) ) ) ) {
-			$api = $this->plugin->api->posts( $a['num'] );
+		if ( empty( get_option( "wp_hunt_{$code}" ) ) || ( ! empty( get_option( "wp_hunt_{$code}" ) ) && ! empty( get_option( "wp_hunt_{$code}_createdat" ) ) && date( 'Y-m-d H:i:s' ) > date( 'Y-m-d H:i:s', strtotime( '+24 hours', strtotime( get_option( "wp_hunt_{$code}_createdat" ) ) ) ) ) ) {
+
+			switch ( $code ) {
+				case 'posts':
+					$api = $this->plugin->api->posts( $a['num'] );
+					break;
+
+				case 'goals':
+					$api = $this->plugin->api->goals( $a['num'] );
+					break;
+			}
+
 			if ( isset( $api['errors'] ) ) {
 				return $api['errors'][0]['error_description'] . ' Reset in ' . gmdate( 'H:i:s', $api['errors'][0]['details']['reset_in'] );
 			}
-			update_option( 'wp_hunt_posts', wp_json_encode( $api ) );
-			update_option( 'wp_hunt_posts_createdat', date( 'Y-m-d H:i:s' ) );
+
+			update_option( "wp_hunt_{$code}", wp_json_encode( $api ) );
+			update_option( "wp_hunt_{$code}_createdat", date( 'Y-m-d H:i:s' ) );
 		} else {
-			$api = json_decode( get_option( 'wp_hunt_posts' ), true );
+			$api = json_decode( get_option( "wp_hunt_{$code}" ), true );
 		}
+		return $api;
+	}
+
+	public function posts( $atts ) {
+		$api = $this->update_api( $atts, 'posts' );
 
 		if ( empty( $api ) ) {
 			return 'Not Working ...';
+		}
+
+		if ( ! is_array( $api ) ) {
+			return $api;
 		}
 
 		$table  = '<div class="wp-hunt">';
@@ -81,7 +113,7 @@ class WPH_Shortcode {
 				$table .= '<h3><a class="inner" href="' . $node['url'] . '">' . $node['name'] . '</a></h3>';
 				$table .= '<p>' . $node['tagline'];
 				$table .= '<br />Launched: ' . date( 'Y-m-d', strtotime( $node['createdAt'] ) );
-				$table .= '<br />Rating: ' . $node['reviewsRating'] ;
+				$table .= '<br />Rating: ' . $node['reviewsRating'];
 				$table .= '<br />Votes: ' . $node['votesCount'];
 				$table .= '<br />' . $node['description'] . '</p>';
 				$table .= '<br /><table cellspacing="0"><tr>';
@@ -95,6 +127,31 @@ class WPH_Shortcode {
 
 		$table .= '</ul>';
 		$table .= '</div>';
+		return $table;
+	}
+
+	public function goals( $atts ) {
+		$api = $this->update_api( $atts, 'goals' );
+
+		if ( empty( $api ) ) {
+			return 'Not Working ...';
+		}
+
+		if ( ! is_array( $api ) ) {
+			return $api;
+		}
+
+		$table  = '<div class="wp-hunt">';
+		$table .= '<ul>';
+		foreach ( $api['data']['goals']['edges'] as $nodes ) {
+			foreach ( $nodes as $node ) {
+				$table .= '<li><input type="checkbox"';
+				$table .= empty( $node['completedAt'] ) ? '' : 'checked';
+				$table .= '><h3>' . date( 'Y-m-d', strtotime( $node['createdAt'] ) ) . '  ' . $node['title'] . $node['user']['name'] . '</h3></li>';
+			}
+		}
+
+		$table .= '</ul>';
 		$table .= '</div>';
 		return $table;
 	}

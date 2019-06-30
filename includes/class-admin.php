@@ -39,20 +39,10 @@ class WPH_Admin {
 	 * @since  0.0.0
 	 */
 	public function hooks() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_public_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( 'admin_init', array( $this, 'init' ) );
 		add_action( 'admin_menu', array( $this, 'add_menu' ) );
-	}
-
-	/**
-	 * Register the stylesheets for the public area.
-	 *
-	 * @since    0.0.0
-	 */
-	public function enqueue_public_styles() {
-		wp_enqueue_style( $this->plugin->__get( 'name' ), $this->plugin->__get( 'url' ) . 'assets/css/wp-hunt-public.min.css', array(), $this->plugin->__get( 'version' ), 'all' );
 	}
 
 	/**
@@ -71,7 +61,7 @@ class WPH_Admin {
 	 * @since    0.0.0
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( $this->plugin->__get( 'name' ), $this->plugin->__get( 'url' ) . 'assets/js/wp-hunt.min.js', array( 'jquery' ), $this->plugin->__get( 'version' ), false );
+		wp_enqueue_script( $this->plugin->__get( 'name' ), $this->plugin->__get( 'url' ) . 'assets/js/wp-hunt.min.js', array( 'jquery' ), $this->plugin->__get( 'version' ), true );
 		wp_localize_script( $this->plugin->__get( 'name' ),
 			'wp_hunt_vars',
 			array(
