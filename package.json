@@ -38,7 +38,7 @@
     "grunt-wp-i18n": "latest",
     "gruntify-eslint": "^5.0.0",
     "load-grunt-tasks": "^5.0.0",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.3",
     "node-sass": "^4.9.3"
   },
   "browserify-shim": {
