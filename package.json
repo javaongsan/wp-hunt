@@ -39,7 +39,7 @@
     "gruntify-eslint": "^5.0.0",
     "load-grunt-tasks": "^5.0.0",
     "minimist": "^1.2.0",
-    "node-sass": "^4.9.3"
+    "node-sass": "^4.13.1"
   },
   "browserify-shim": {
     "jquery": "global:jQuery"
